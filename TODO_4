@@ -1,0 +1,43 @@
+
+import os
+
+Candidato = dict()
+Candidato['Nome'] = ''
+Candidato['Vaga'] = ''
+Candidato['Resumo'] = ''
+contador = 0
+salvar = []
+Opcao = ''
+
+def recebe_cv(Candidato):
+    
+    for i in range (2):
+    #Recebendo as informações dos candidatos:
+        Nome_candidato = input('Digite a o nome do Candidato: ')
+        Nome_vaga = input('Digite a vaga desejada: ')
+        Nome_resumo = input('Digite um resumo: ')
+        Candidato['Nome'] = Nome_candidato
+        Candidato['Vaga'] = Nome_vaga
+        Candidato['Resumo'] = Nome_resumo
+        salvar.append(Candidato)
+        os.system("cls")
+        return('InformaçõesDos cadidatos:\n',salvar)
+
+
+
+
+def iniciar():
+    Opcao = input('Deseja inserir dados?\nSim\nNão\n ')
+    if (Opcao == 'Sim'):
+        print(recebe_cv(Candidato))
+    elif (Opcao =='Não'):
+        print('Obrigada por acessar o programa!')
+    else:
+        print('Insira uma opção válida!')
+        os.system("cls")
+        iniciar()  
+print ('Programa para processo seletivo:')        
+iniciar()
+
+
+
