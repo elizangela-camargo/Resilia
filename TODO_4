@@ -1,43 +1,81 @@
-
 import os
+""" 1- Desenvolva um projeto (usando dicionários) que vai gravar a quantidade de currículos para cada vaga e quantas pessoas têm pelo menos uma das palavras chaves necessárias no currículo. Para isso, nosso código Python vai checar quantos candidatos estão se inscrevendo, para qual vaga, nome do candidato e um resumo que a pessoa está enviando.
 
-Candidato = dict()
-Candidato['Nome'] = ''
-Candidato['Vaga'] = ''
-Candidato['Resumo'] = ''
-contador = 0
-salvar = []
-Opcao = ''
+2- Usar as palavras chaves a seguir para cada vaga. Nosso código deve perguntar: quantos candidatos serão cadastrados; qual o nome do candidato; para qual vaga está se inscrevendo; e um pequeno texto com o resumo do currículo do participante;
+3- Vaga Analista de dados com as palavras chaves: Python, PowerBI, SQL, Boa comunicação
+4- Vaga Cientista de dados com as palavras chaves: Python, Banco de dados, Machine Learning, Resolução De Problemas, Estatística """
 
-def recebe_cv(Candidato):
-    
-    for i in range (2):
+thisdict_cv = {
+  "Nome": [],
+  "Vaga": [],
+  "Resumo": [],
+}
+Nome_candidato = ""
+Nome_vaga = ""
+Nome_resumo = ""
+
+
+chaves = {'Cientista': ['python', 'pandas', 'liderança', 'SQL', 'criação', 'BI', 'desenvolvimento', 'base de dados'],
+'Analista': ['python', 'SQL', 'BI', 'relatórios']}
+def recebe_cv():
+    #os.system("cls")
+    QtsCandidatos = int(input('Quantos candidatos serão cadastrados: '))
+    candidatos_cient = []
+    candidatos_analist = []
+    for i in range (QtsCandidatos):
     #Recebendo as informações dos candidatos:
-        Nome_candidato = input('Digite a o nome do Candidato: ')
-        Nome_vaga = input('Digite a vaga desejada: ')
-        Nome_resumo = input('Digite um resumo: ')
-        Candidato['Nome'] = Nome_candidato
-        Candidato['Vaga'] = Nome_vaga
-        Candidato['Resumo'] = Nome_resumo
-        salvar.append(Candidato)
+        Nome_candidato = input("Digite o nome do Candidato: ")
+        Nome_vaga = input("Digite a vaga deseja: ")
+        Nome_resumo = input("Digite a um resumo da vaga pretendida: ")
+        thisdict_cv["Nome"].append(Nome_candidato)
+        thisdict_cv["Resumo"].append(Nome_resumo)
+        thisdict_cv["Vaga"].append(Nome_vaga)
         os.system("cls")
-        return('InformaçõesDos cadidatos:\n',salvar)
+        if Nome_vaga == 'Cientista':
+            candidatos_cient.append([Nome_candidato, Nome_resumo,Nome_vaga])
+            for i in candidatos_cient:
+                contador = 0
+                for j in chaves['Cientista']:
+                    if j.upper() in i[1].upper():
+                        contador += 1
+                        
+                if contador > 0:
+                    print(f'\n{i[0]} está apto para a vaga de Cientista')
+                elif contador == 0:
+                    print(f'\n{i[0]} não está apto para a vaga de Cientista')
+                
+        elif Nome_vaga == 'Analista':
+            candidatos_cient.append([Nome_candidato, Nome_resumo,Nome_vaga])
+        for a in candidatos_analist:
+                contador = 0
+                for b in chaves['Analista']:
+                    if b.upper() in a[1].upper():
+                        contador += 1
+                    
+                if contador > 0:
+                    print(f'\n {a[0]} está apto para a vaga de Analista')
+                elif contador == 0:
+                    print(f'\n{a[0]} não está apto para a vaga de Analista')
+  
 
 
 
 
+
+
+
+#os.system("cls")
 def iniciar():
     Opcao = input('Deseja inserir dados?\nSim\nNão\n ')
-    if (Opcao == 'Sim'):
-        print(recebe_cv(Candidato))
+    if (Opcao =='Sim'):
+        os.system("cls")
+        recebe_cv()
     elif (Opcao =='Não'):
         print('Obrigada por acessar o programa!')
     else:
         print('Insira uma opção válida!')
         os.system("cls")
         iniciar()  
-print ('Programa para processo seletivo:')        
+        
+
 iniciar()
-
-
-
