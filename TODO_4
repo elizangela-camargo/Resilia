@@ -20,43 +20,47 @@ chaves = {'Cientista': ['python', 'pandas', 'liderança', 'SQL', 'criação', 'B
 def recebe_cv():
     #os.system("cls")
     QtsCandidatos = int(input('Quantos candidatos serão cadastrados: '))
-    candidatos_cient = []
-    candidatos_analist = []
-    for i in range (QtsCandidatos):
-    #Recebendo as informações dos candidatos:
-        Nome_candidato = input("Digite o nome do Candidato: ")
-        Nome_vaga = input("Digite a vaga deseja: ")
-        Nome_resumo = input("Digite a um resumo da vaga pretendida: ")
-        thisdict_cv["Nome"].append(Nome_candidato)
-        thisdict_cv["Resumo"].append(Nome_resumo)
-        thisdict_cv["Vaga"].append(Nome_vaga)
-        os.system("cls")
-        if Nome_vaga == 'Cientista':
-            candidatos_cient.append([Nome_candidato, Nome_resumo,Nome_vaga])
-            for i in candidatos_cient:
-                contador = 0
-                for j in chaves['Cientista']:
-                    if j.upper() in i[1].upper():
-                        contador += 1
+    if (QtsCandidatos) <= 0:
+        print('Digite uma opção válida!')
+        recebe_cv()
+    else:
+            candidatos_cient = []
+            candidatos_analist = []
+            for i in range (QtsCandidatos):
+            #Recebendo as informações dos candidatos:
+                Nome_candidato = input("Digite o nome do Candidato: ")
+                Nome_vaga = input("Digite a vaga deseja: ")
+                Nome_resumo = input("Digite a um resumo da vaga pretendida: ")
+                thisdict_cv["Nome"].append(Nome_candidato)
+                thisdict_cv["Resumo"].append(Nome_resumo)
+                thisdict_cv["Vaga"].append(Nome_vaga)
+                os.system("cls")
+                if Nome_vaga == 'Cientista':
+                    candidatos_cient.append([Nome_candidato, Nome_resumo,Nome_vaga])
+                    for i in candidatos_cient:
+                        contador = 0
+                        for j in chaves['Cientista']:
+                            if j.upper() in i[1].upper():
+                                contador += 1
+                                
+                        if contador > 0:
+                            print(f'\n{i[0]} está apto para a vaga de Cientista')
+                        elif contador == 0:
+                            print(f'\n{i[0]} não está apto para a vaga de Cientista')
                         
-                if contador > 0:
-                    print(f'\n{i[0]} está apto para a vaga de Cientista')
-                elif contador == 0:
-                    print(f'\n{i[0]} não está apto para a vaga de Cientista')
-                
-        elif Nome_vaga == 'Analista':
-            candidatos_cient.append([Nome_candidato, Nome_resumo,Nome_vaga])
-        for a in candidatos_analist:
-                contador = 0
-                for b in chaves['Analista']:
-                    if b.upper() in a[1].upper():
-                        contador += 1
-                    
-                if contador > 0:
-                    print(f'\n {a[0]} está apto para a vaga de Analista')
-                elif contador == 0:
-                    print(f'\n{a[0]} não está apto para a vaga de Analista')
-  
+                elif Nome_vaga == 'Analista':
+                    candidatos_cient.append([Nome_candidato, Nome_resumo,Nome_vaga])
+                for a in candidatos_analist:
+                        contador = 0
+                        for b in chaves['Analista']:
+                            if b.upper() in a[1].upper():
+                                contador += 1
+                            
+                        if contador > 0:
+                            print(f'\n {a[0]} está apto para a vaga de Analista')
+                        elif contador == 0:
+                            print(f'\n{a[0]} não está apto para a vaga de Analista')
+   
 
 
 
